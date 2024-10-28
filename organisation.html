@@ -1,4 +1,339 @@
-<html>
+<html><head><base href=""><title>Organisation - Portfolio de Paul Peudecoeur</title>
+<meta charset="UTF-8">
+<style>
+:root {
+  --primary: #2c3e50;
+  --accent: transparent;
+  --light: #ecf0f1;
+}
 
-  L'orga du stage 
-</html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--primary);
+  background-color: var(--light);
+}
+
+.nav {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.nav-link.active {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.company-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+}
+
+.company-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.company-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.company-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.company-info {
+  padding: 2rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 10px;
+  color: white;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.experience-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+}
+
+.skills-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.skills-list li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.skills-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #23d5ab;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a href="profil.html" class="nav-link">Profil</a>
+    </li>
+    <li class="nav-item">
+      <a href="formation.html" class="nav-link">Formation</a>
+      <div class="dropdown">
+        <a href="bts-sio-sisr.html" class="dropdown-link">BTS SIO SISR</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="organisation.html" class="nav-link active">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="epreuves.html" class="nav-link">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e4.html" class="dropdown-link">Epreuve E4</a>
+        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link">Veilles</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<main class="company-section">
+  <div class="company-header">
+    <h1>Mon Stage en Entreprise</h1>
+    <p>Découverte professionnelle et expérience enrichissante</p>
+  </div>
+
+  <div class="company-card">
+    <h2>Présentation de l'Entreprise</h2>
+    <div class="company-details">
+      <div class="company-info">
+        <h3>InfoTech Solutions</h3>
+        <p>Entreprise spécialisée dans les services informatiques et la transformation numérique</p>
+        <ul class="skills-list">
+          <li>Plus de 100 collaborateurs</li>
+          <li>15 ans d'expertise</li>
+          <li>Présence nationale</li>
+        </ul>
+      </div>
+      <div class="company-info">
+        <h3>Mon Rôle</h3>
+        <p>Stage en tant que Technicien Systèmes et Réseaux</p>
+        <ul class="skills-list">
+          <li>Support technique niveau 1 et 2</li>
+          <li>Administration système</li>
+          <li>Maintenance réseau</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="company-card">
+    <h2>Compétences Acquises</h2>
+    <div class="experience-grid">
+      <div class="experience-card">
+        <h3>Administration Système</h3>
+        <ul class="skills-list">
+          <li>Configuration Windows Server</li>
+          <li>Gestion Active Directory</li>
+          <li>Maintenance des services réseau</li>
+        </ul>
+      </div>
+      <div class="experience-card">
+        <h3>Support Utilisateurs</h3>
+        <ul class="skills-list">
+          <li>Résolution incidents</li>
+          <li>Documentation technique</li>
+          <li>Formation utilisateurs</li>
+        </ul>
+      </div>
+      <div class="experience-card">
+        <h3>Sécurité</h3>
+        <ul class="skills-list">
+          <li>Configuration firewall</li>
+          <li>Gestion des accès</li>
+          <li>Sauvegardes système</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="company-card">
+    <h2>Projets Réalisés</h2>
+    <div class="experience-grid">
+      <div class="experience-card">
+        <h3>Migration Infrastructure</h3>
+        <p>Participation à la migration d'une infrastructure serveur vers une solution cloud</p>
+      </div>
+      <div class="experience-card">
+        <h3>Déploiement VPN</h3>
+        <p>Mise en place d'une solution VPN pour le télétravail des collaborateurs</p>
+      </div>
+      <div class="experience-card">
+        <h3>Automatisation</h3>
+        <p>Développement de scripts pour l'automatisation des tâches système</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.company-card, .experience-card');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    observer.observe(card);
+  });
+});
+</script>
+
+</body></html>
