@@ -1,4 +1,424 @@
-<html>
+<html><head><base href="."><title>Formation - Portfolio de Paul Peudecoeur</title>
+<meta charset="UTF-8">
+<style>
+:root {
+  --primary: #2c3e50;
+  --accent: transparent;
+  --light: #ecf0f1;
+}
 
-  La formation  
-</html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--primary);
+  background-color: var(--light);
+}
+
+.nav {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.nav-link.active {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.profile-section {
+  padding: 8rem 2rem 4rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.profile-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.profile-info {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.info-card {
+  padding: 1.5rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 8px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  animation: fadeInUp 1s ease-out;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  border-radius: 50%;
+  top: 15px;
+  z-index: 1;
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item.right::after {
+  left: -16px;
+}
+
+.timeline-content {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+.timeline-date {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.timeline-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.timeline-text {
+  line-height: 1.6;
+}
+
+.highlights {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(35, 213, 171, 0.1);
+  border-radius: 8px;
+}
+
+.highlights ul {
+  list-style-type: none;
+}
+
+.highlights li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.highlights li::before {
+  content: '•';
+  color: #23d5ab;
+  position: absolute;
+  left: 0;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a href="profil.html" class="nav-link">Profil</a>
+    </li>
+    <li class="nav-item">
+      <a href="formation.html" class="nav-link active">Formation</a>
+      <div class="dropdown">
+        <a href="bts-sio-sisr.html" class="dropdown-link">BTS SIO SISR</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="organisation.html" class="nav-link">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="epreuves.html" class="nav-link">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e4.html" class="dropdown-link">Epreuve E4</a>
+        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link">Veilles</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<main class="profile-section">
+  <div class="profile-header">
+    <h1>Mon Parcours de Formation</h1>
+    <p>Un voyage éducatif orienté vers l'expertise en systèmes et réseaux</p>
+  </div>
+
+  <div class="profile-info">
+    <h2>Parcours Académique</h2>
+    
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-date">2023 - Présent</div>
+          <h3 class="timeline-title">BTS SIO Option SISR</h3>
+          <p class="timeline-text">Formation approfondie en administration des systèmes et réseaux</p>
+          <div class="highlights">
+            <ul>
+              <li>Administration des systèmes Windows et Linux</li>
+              <li>Configuration et sécurisation des réseaux</li>
+              <li>Virtualisation et cloud computing</li>
+              <li>Cybersécurité et protection des données</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <div class="timeline-date">2022 - 2023</div>
+          <h3 class="timeline-title">Baccalauréat Général</h3>
+          <p class="timeline-text">Spécialités Mathématiques et Sciences Numériques</p>
+          <div class="highlights">
+            <ul>
+              <li>Mention Bien</li>
+              <li>Initiation à la programmation</li>
+              <li>Bases des systèmes d'information</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <div class="timeline-date">2019 - 2022</div>
+          <h3 class="timeline-title">Lycée</h3>
+          <p class="timeline-text">Formation générale avec focus sur les sciences</p>
+          <div class="highlights">
+            <ul>
+              <li>Développement de la rigueur analytique</li>
+              <li>Premier contact avec l'informatique</li>
+              <li>Participation à des projets techniques</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Certifications</h3>
+        <p>En cours d'obtention :<br>
+        - CISCO CCNA<br>
+        - SecNum Académie</p>
+      </div>
+      <div class="info-card">
+        <h3>Projets Académiques</h3>
+        <p>Infrastructure réseau<br>
+        Sécurisation système<br>
+        Administration serveurs</p>
+      </div>
+      <div class="info-card">
+        <h3>Objectifs Formation</h3>
+        <p>Expert Cybersécurité<br>
+        Administration Systèmes<br>
+        Réseaux avancés</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  timelineItems.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(50px)';
+    observer.observe(item);
+  });
+});
+</script>
+
+</body></html>
