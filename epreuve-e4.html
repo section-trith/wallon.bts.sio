@@ -1,1 +1,341 @@
-<html>epreuve 4</html>
+<html><head><base href=""><title>Épreuve E4 - Portfolio de Paul Peudecoeur</title>
+<meta charset="UTF-8">
+<style>
+:root {
+  --primary: #2c3e50;
+  --accent: transparent;
+  --light: #ecf0f1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--primary);
+  background-color: var(--light);
+}
+
+.nav {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.nav-link.active {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.veille-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+}
+
+.veille-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.veille-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.veille-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(31, 38, 135, 0.2);
+}
+
+.project-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.project-description {
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.project-details {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.project-details li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.project-details li::before {
+  content: '→';
+  position: absolute;
+  left: -1.5rem;
+  color: #23a6d5;
+}
+
+.epreuve-description {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.competences-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.competence-item {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 4px solid #23a6d5;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a href="profil.html" class="nav-link">Profil</a>
+    </li>
+    <li class="nav-item">
+      <a href="formation.html" class="nav-link">Formation</a>
+      <div class="dropdown">
+        <a href="bts-sio-sisr.html" class="dropdown-link">BTS SIO SISR</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="organisation.html" class="nav-link">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="epreuves.html" class="nav-link active">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e4.html" class="dropdown-link active">Epreuve E4</a>
+        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link">Veilles</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<main class="veille-section">
+  <div class="veille-header">
+    <h1>Épreuve E4</h1>
+    <p>Support et mise à disposition des services informatiques</p>
+  </div>
+
+  <div class="epreuve-description">
+    <h2>Informations de l'Épreuve</h2>
+    <div class="competences-list">
+      <div class="competence-item">
+        <h3>Nom</h3>
+        <p>Support et mise à disposition de services informatiques</p>
+      </div>
+      <div class="competence-item">
+        <h3>Coefficient</h3>
+        <p>Coeff. 4</p>
+      </div>
+      <div class="competence-item">
+        <h3>Durée</h3>
+        <p>Épreuve ponctuelle orale (40 minutes)</p>
+      </div>
+      <div class="competence-item">
+        <h3>Documents à fournir</h3>
+        <p>Tableau de Synthèse, Attestations de stages</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <h3 class="project-title">Objectif</h3>
+    <p class="project-description">Cette épreuve vise à évaluer chez la personne candidate l'acquisition des compétences décrites dans le bloc de compétences « Support et mise à disposition de services informatiques »</p>
+  </div>
+
+  <div class="project-card">
+    <h3 class="project-title">Modalités d'évaluation</h3>
+    <p class="project-description">Forme ponctuelle orale (durée 40 minutes)</p>
+    <ul class="project-details">
+      <li>Présentation du parcours de professionnalisation (10 minutes max)</li>
+      <li>Justification des modalités d'acquisition des compétences</li>
+      <li>30 minutes d'échange avec le jury</li>
+      <li>Approfondissement des réalisations décrites dans le dossier numérique</li>
+    </ul>
+  </div>
+
+  <div class="project-card">
+    <h3 class="project-title">Documents annexes</h3>
+    <ul class="project-details">
+      <li><a href="docs/tableau-synthese-e4.pdf">Tableau de Synthèse - Épreuve E4</a></li>
+      <li><a href="#" style="color: grey; pointer-events: none;">Attestation de stage n°1 (2023) 🔒</a></li>
+      <li><a href="#" style="color: grey; pointer-events: none;">Attestation de stage n°2 (2024) 🔒</a></li>
+    </ul>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.project-card');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    observer.observe(card);
+  });
+});
+</script>
+
+</body></html>
