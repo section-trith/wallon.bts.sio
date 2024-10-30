@@ -58,6 +58,36 @@ body {
   text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
 }
 
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
 .contact-section {
   max-width: 1200px;
   margin: 0 auto;
@@ -362,13 +392,26 @@ body {
       <a href="index.html" class="nav-link">Accueil</a>
     </li>
     <li class="nav-item">
-      <a href="competences.html" class="nav-link">Compétences</a>
+      <a href="profil.html" class="nav-link">Profil</a>
     </li>
     <li class="nav-item">
-      <a href="projet.html" class="nav-link">Projets</a>
+      <a href="formation.html" class="nav-link">Formation</a>
+      <div class="dropdown">
+        <a href="formation.html" class="dropdown-link">BTS SIO SISR</a>
+      </div>
     </li>
     <li class="nav-item">
-      <a href="veille.html" class="nav-link">Veille</a>
+      <a href="organisation.html" class="nav-link">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e4.html" class="dropdown-link">Epreuve E4</a>
+        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link">Veilles</a>
     </li>
     <li class="nav-item">
       <a href="contact.html" class="nav-link active">Contact</a>
