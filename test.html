@@ -1,369 +1,492 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #2c3e50;
-      --accent: #23d5ab;
-      --light: #ecf0f1;
-      --blue-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    }
+<html><head><base href=""><title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
+<meta charset="UTF-8">
+<style>
+:root {
+  --primary: #2c3e50;
+  --accent: transparent;
+  --light: #ecf0f1;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: var(--primary);
-      background-color: var(--light);
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--primary);
+  background-color: var(--light);
+}
 
-    .nav {
-      background: var(--primary);
-      padding: 1rem 2rem;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-    }
+.nav {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
 
-    .nav-list {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
 
-    .nav-link {
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-      padding: 0.5rem 1rem;
-      transition: color 0.3s ease;
-    }
+.nav-item {
+  position: relative;
+}
 
-    .nav-link:hover, .nav-link.active {
-      color: var(--accent);
-      text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
-    }
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
 
-    .veille-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 8rem 2rem 4rem;
-    }
+.nav-link:hover {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
 
-    .veille-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
+.nav-link.active {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
 
-    .veille-header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: var(--blue-gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-    }
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
 
-    .tabs-container {
-      margin-bottom: 2rem;
-    }
+.nav-item:hover .dropdown {
+  display: block;
+}
 
-    .tabs {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      justify-content: center;
-    }
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
 
-    .tab {
-      padding: 0.8rem 1.5rem;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
 
-    .tab.active {
-      background: var(--primary);
-      color: white;
-      transform: scale(1.05);
-    }
+.veille-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+}
 
-    .tab:hover {
-      transform: translateY(-2px);
-    }
+.veille-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeInDown 1s ease-out;
+}
 
-    .news-container {
-      display: none;
-    }
+.veille-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 
-    .news-container.active {
-      display: block;
-    }
+.tabs-container {
+  margin-bottom: 2rem;
+}
 
-    .loader {
-      text-align: center;
-      padding: 2rem;
-      display: none;
-    }
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
 
-    .loader::after {
-      content: '';
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3f3f1;
-      border-top: 4px solid var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
+.tab {
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
 
-    .error-message {
-      color: #e74c3c;
-      text-align: center;
-      padding: 1rem;
-      background: rgba(231, 76, 60, 0.1);
-      border-radius: 10px;
-      margin: 1rem 0;
-      display: none;
-    }
+.tab.active {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
 
-    .news-item {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transform: translateX(-20px);
-      opacity: 0;
-      transition: all 0.5s ease;
-    }
+.tab:hover {
+  transform: translateY(-2px);
+}
 
-    .news-item.visible {
-      transform: translateX(0);
-      opacity: 1;
-    }
+.news-container {
+  display: none;
+}
 
-    .news-date {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
+.news-container.active {
+  display: block;
+}
 
-    .news-title {
-      font-size: 1.3rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
+.loader {
+  text-align: center;
+  padding: 2rem;
+  display: none;
+}
 
-    .news-content {
-      color: #444;
-      margin-bottom: 1rem;
-    }
+.loader::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f1;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
 
-    .source-link {
-      display: inline-block;
-      color: var(--accent);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-      background: rgba(35, 166, 213, 0.1);
-    }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-    .source-link:hover {
-      background: rgba(35, 166, 213, 0.2);
-      transform: translateX(5px);
-    }
+.veille-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
 
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+.veille-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.4s ease;
+}
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+.veille-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(31, 38, 135, 0.2);
+}
+
+.veille-topic {
+  margin-bottom: 2rem;
+}
+
+.veille-topic h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.news-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+  transform: translateX(10px);
+}
+
+.news-date {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.news-title {
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.news-content {
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.source-link {
+  display: inline-block;
+  color: #23a6d5;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background: rgba(35, 166, 213, 0.1);
+}
+
+.source-link:hover {
+  background: rgba(35, 166, 213, 0.2);
+  transform: translateX(5px);
+}
+
+.veille-methods {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+}
+
+.methods-title {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.methods-list {
+  list-style: none;
+}
+
+.methods-list li {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.methods-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #23a6d5;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <nav class="nav">
-    <ul class="nav-list">
-      <li class="nav-item">
-        <a href="index.html" class="nav-link">Accueil</a>
-      </li>
-      <li class="nav-item">
-        <a href="profil.html" class="nav-link">Profil</a>
-      </li>
-      <li class="nav-item">
-        <a href="veilles.html" class="nav-link active">Veilles</a>
-      </li>
-      <li class="nav-item">
-        <a href="contact.html" class="nav-link">Contact</a>
-      </li>
-    </ul>
-  </nav>
 
-  <main class="veille-section">
-    <div class="veille-header">
-      <h1>Veille Technologique</h1>
-      <p>Sujet : Réseau Informatique et Cybersécurité</p>
-    </div>
-
-    <div class="tabs-container">
-      <div class="tabs">
-        <button class="tab active" data-tab="general">Actualités générales</button>
-        <button class="tab" data-tab="ai">Actualités IA</button>
+<nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a href="profil.html" class="nav-link">Profil</a>
+    </li>
+    <li class="nav-item">
+      <a href="formation.html" class="nav-link">Formation</a>
+      <div class="dropdown">
+        <a href="bts-sio-sisr.html" class="dropdown-link">BTS SIO SISR</a>
       </div>
-    </div>
-
-    <div id="general-news" class="news-container active">
-      <div id="general-loader" class="loader"></div>
-      <div id="general-error-message" class="error-message">
-        Une erreur est survenue lors du chargement des actualités.
+    </li>
+    <li class="nav-item">
+      <a href="organisation.html" class="nav-link">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="epreuves.html" class="nav-link">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e4.html" class="dropdown-link">Epreuve E4</a>
+        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
       </div>
-      <div id="general-news-list"></div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link active">Veilles</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+  </ul>
+</nav>
+
+<main class="veille-section">
+  <div class="veille-header">
+    <h1>Veille Technologique</h1>
+    <p>Sujet : Réseau Informatique et Cybersécurité</p>
+  </div>
+
+  <div class="tabs-container">
+    <div class="tabs">
+      <button class="tab active" data-tab="general">Actualités générales</button>
+      <button class="tab" data-tab="ai">Actualités IA</button>
+      <button class="tab" data-tab="cyber">Actualités Cybersécurité</button>
     </div>
+  </div>
 
-    <div id="ai-news" class="news-container">
-      <div id="ai-loader" class="loader"></div>
-      <div id="ai-error-message" class="error-message">
-        Une erreur est survenue lors du chargement des actualités IA.
-      </div>
-      <div id="ai-news-list"></div>
-    </div>
-  </main>
+  <div id="general-news" class="news-container active">
+    <div id="general-loader" class="loader"></div>
+    <div id="general-news-list"></div>
+  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const generalNewsListContainer = document.getElementById('general-news-list');
-      const aiNewsListContainer = document.getElementById('ai-news-list');
-      const generalLoader = document.getElementById('general-loader');
-      const aiLoader = document.getElementById('ai-loader');
-      const generalErrorMessage = document.getElementById('general-error-message');
-      const aiErrorMessage = document.getElementById('ai-error-message');
-      const tabs = document.querySelectorAll('.tab');
+  <div id="ai-news" class="news-container">
+    <div id="ai-loader" class="loader"></div>
+    <div id="ai-news-list"></div>
+  </div>
 
-      function formatDate(dateStr) {
-        return new Date(dateStr).toLocaleDateString('fr-FR', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        });
-      }
+  <div id="cyber-news" class="news-container">
+    <div id="cyber-loader" class="loader"></div>
+    <div id="cyber-news-list"></div>
+  </div>
+</main>
 
-      function createNewsItem(item) {
-        return `
-          <div class="news-item">
-            <div class="news-date">${formatDate(item.pubDate)}</div>
-            <h3 class="news-title">${item.title}</h3>
-            <p class="news-content">${item.description}</p>
-            <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
-          </div>
-        `;
-      }
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const newsContainers = {
+    general: {
+      list: document.getElementById('general-news-list'),
+      loader: document.getElementById('general-loader'),
+      rss: 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738'
+    },
+    ai: {
+      list: document.getElementById('ai-news-list'),
+      loader: document.getElementById('ai-loader'),
+      rss: 'https://rss.app/feeds/6CxFTMCJIgFmdqQs.xml'
+    },
+    cyber: {
+      list: document.getElementById('cyber-news-list'),
+      loader: document.getElementById('cyber-loader'),
+      rss: 'https://rss.app/feeds/z5gnt9qQSWwa3XM3.xml'
+    }
+  };
 
-      async function loadGeneralNews() {
-        generalLoader.style.display = 'block';
-        generalErrorMessage.style.display = 'none';
-        generalNewsListContainer.innerHTML = '';
-
-        try {
-          const rssUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
-          const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-          const response = await fetch(apiUrl);
-          if (!response.ok) throw new Error('Erreur réseau');
-          const data = await response.json();
-          if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
-
-          generalNewsListContainer.innerHTML = data.items.map(item => createNewsItem(item)).join('');
-          animateNewsItems(generalNewsListContainer);
-        } catch (error) {
-          console.error('Erreur:', error);
-          generalErrorMessage.style.display = 'block';
-        } finally {
-          generalLoader.style.display = 'none';
-        }
-      }
-
-      async function loadAINews() {
-        aiLoader.style.display = 'block';
-        aiErrorMessage.style.display = 'none';
-        aiNewsListContainer.innerHTML = '';
-
-        try {
-          const rssUrl = 'https://rss.app/feeds/6CxFTMCJIgFmdqQs.xml';
-          const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-          const response = await fetch(apiUrl);
-          if (!response.ok) throw new Error('Erreur réseau');
-          const data = await response.json();
-          if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
-
-          aiNewsListContainer.innerHTML = data.items.map(item => createNewsItem(item)).join('');
-          animateNewsItems(aiNewsListContainer);
-        } catch (error) {
-          console.error('Erreur:', error);
-          aiErrorMessage.style.display = 'block';
-        } finally {
-          aiLoader.style.display = 'none';
-        }
-      }
-
-      function animateNewsItems(container) {
-        const newsItems = container.querySelectorAll('.news-item');
-        newsItems.forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.add('visible');
-          }, index * 100);
-        });
-      }
-
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-
-          const tabId = tab.dataset.tab;
-          document.querySelectorAll('.news-container').forEach(container => {
-            container.classList.remove('active');
-          });
-          document.getElementById(`${tabId}-news`).classList.add('active');
-
-          if (tabId === 'general') {
-            loadGeneralNews();
-          } else {
-            loadAINews();
-          }
-        });
-      });
-
-      loadGeneralNews();
+  function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
     });
-  </script>
-</body>
-</html>
+  }
+
+  function createNewsItem(item) {
+    return `
+      <div class="news-item">
+        <div class="news-date">${formatDate(item.pubDate)}</div>
+        <h3 class="news-title">${item.title}</h3>
+        <p class="news-content">${item.description}</p>
+        <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
+      </div>
+    `;
+  }
+
+  async function loadNews(type) {
+    const container = newsContainers[type];
+    container.loader.style.display = 'block';
+    container.list.innerHTML = '';
+
+    try {
+      const rssUrl = container.rss;
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      
+      container.list.innerHTML = data.items.map(item => createNewsItem(item)).join('');
+      animateNewsItems(container.list);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      container.loader.style.display = 'none';
+    }
+  }
+
+  function animateNewsItems(container) {
+    const newsItems = container.querySelectorAll('.news-item');
+    newsItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateX(0)';
+      }, index * 100);
+    });
+  }
+
+  // Tab switching logic
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const type = tab.dataset.tab;
+      
+      // Update active states
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      document.querySelectorAll('.news-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      document.getElementById(`${type}-news`).classList.add('active');
+      
+      // Load content
+      loadNews(type);
+    });
+  });
+
+  // Initial load
+  loadNews('general');
+});
+</script>
+
+</body></html>
