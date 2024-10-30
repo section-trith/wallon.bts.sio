@@ -1,416 +1,369 @@
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-<title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
-<meta charset="UTF-8">
-<style>
-:root {
-  --primary: #2c3e50;
-  --accent: transparent;
-  --light: #ecf0f1;
-  --blue-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --accent: #23d5ab;
+      --light: #ecf0f1;
+      --blue-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  color: var(--primary);
-  background-color: var(--light);
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--primary);
+      background-color: var(--light);
+    }
 
-.nav {
-  background: var(--primary);
-  padding: 1rem 2rem;
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-}
+    .nav {
+      background: var(--primary);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
 
-.nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
+    .nav-list {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
 
-.nav-item {
-  position: relative;
-}
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease;
+    }
 
-.nav-link {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
-}
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+    }
 
-.nav-link:hover, .nav-link.active {
-  color: #23d5ab;
-  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
-}
+    .veille-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
 
-.veille-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 8rem 2rem 4rem;
-}
+    .veille-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
 
-.veille-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
+    .veille-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: var(--blue-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
 
-.veille-header h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  background: var(--blue-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
+    .tabs-container {
+      margin-bottom: 2rem;
+    }
 
-.tabs-container {
-  margin-bottom: 2rem;
-}
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
 
-.tabs {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-}
+    .tab {
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
 
-.tab {
-  padding: 0.8rem 1.5rem;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
+    .tab.active {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.05);
+    }
 
-.tab.active {
-  background: var(--primary);
-  color: white;
-  transform: scale(1.05);
-}
+    .tab:hover {
+      transform: translateY(-2px);
+    }
 
-.tab:hover {
-  transform: translateY(-2px);
-}
+    .news-container {
+      display: none;
+    }
 
-.news-container {
-  display: none;
-}
+    .news-container.active {
+      display: block;
+    }
 
-.news-container.active {
-  display: block;
-}
+    .loader {
+      text-align: center;
+      padding: 2rem;
+      display: none;
+    }
 
-.loader {
-  text-align: center;
-  padding: 2rem;
-  display: none;
-}
+    .loader::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f1;
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
 
-.loader::after {
-  content: '';
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #23a6d5;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
+    .error-message {
+      color: #e74c3c;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(231, 76, 60, 0.1);
+      border-radius: 10px;
+      margin: 1rem 0;
+      display: none;
+    }
 
-.error-message {
-  color: #e74c3c;
-  text-align: center;
-  padding: 1rem;
-  background: rgba(231, 76, 60, 0.1);
-  border-radius: 10px;
-  margin: 1rem 0;
-  display: none;
-}
+    .news-item {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transform: translateX(-20px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
 
-.news-item {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 15px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transform: translateX(-20px);
-  opacity: 0;
-  transition: all 0.5s ease;
-}
+    .news-item.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
 
-.news-item.visible {
-  transform: translateX(0);
-  opacity: 1;
-}
+    .news-date {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
 
-.news-date {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
+    .news-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
 
-.news-title {
-  font-size: 1.3rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
+    .news-content {
+      color: #444;
+      margin-bottom: 1rem;
+    }
 
-.news-content {
-  color: #444;
-  margin-bottom: 1rem;
-}
+    .source-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      background: rgba(35, 166, 213, 0.1);
+    }
 
-.source-link {
-  display: inline-block;
-  color: #23a6d5;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  background: rgba(35, 166, 213, 0.1);
-}
+    .source-link:hover {
+      background: rgba(35, 166, 213, 0.2);
+      transform: translateX(5px);
+    }
 
-.source-link:hover {
-  background: rgba(35, 166, 213, 0.2);
-  transform: translateX(5px);
-}
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-.refresh-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  margin-bottom: 2rem;
-}
-
-.refresh-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.refresh-button i {
-  transition: transform 0.3s ease;
-}
-
-.refresh-button:hover i {
-  transform: rotate(180deg);
-}
-
-.archive-date {
-  text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  color: var(--primary);
-  background: var(--blue-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a href="profil.html" class="nav-link">Profil</a>
+      </li>
+      <li class="nav-item">
+        <a href="veilles.html" class="nav-link active">Veilles</a>
+      </li>
+      <li class="nav-item">
+        <a href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
 
-<nav class="nav">
-  <ul class="nav-list">
-    <li class="nav-item">
-      <a href="index.html" class="nav-link">Accueil</a>
-    </li>
-    <li class="nav-item">
-      <a href="profil.html" class="nav-link">Profil</a>
-    </li>
-    <li class="nav-item">
-      <a href="veilles.html" class="nav-link active">Veilles</a>
-    </li>
-    <li class="nav-item">
-      <a href="contact.html" class="nav-link">Contact</a>
-    </li>
-  </ul>
-</nav>
-
-<main class="veille-section">
-  <div class="veille-header">
-    <h1>Veille Technologique</h1>
-    <p>Sujet : Réseau Informatique et Cybersécurité</p>
-  </div>
-
-  <div class="tabs-container">
-    <div class="tabs">
-      <button class="tab active" data-tab="latest">Dernières actualités</button>
-      <button class="tab" data-tab="archive">Archives</button>
+  <main class="veille-section">
+    <div class="veille-header">
+      <h1>Veille Technologique</h1>
+      <p>Sujet : Réseau Informatique et Cybersécurité</p>
     </div>
-    
-    <button id="refresh-button" class="refresh-button">
-      <i class="fas fa-sync-alt"></i>
-      Actualiser
-    </button>
-  </div>
 
-  <div id="latest-news" class="news-container active">
-    <div id="loader" class="loader"></div>
-    <div id="error-message" class="error-message">
-      Une erreur est survenue lors du chargement des actualités.
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab active" data-tab="general">Actualités générales</button>
+        <button class="tab" data-tab="ai">Actualités IA</button>
+      </div>
     </div>
-    <div id="news-list"></div>
-  </div>
 
-  <div id="archive-news" class="news-container">
-    <!-- Les archives seront injectées ici -->
-  </div>
-</main>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const newsListContainer = document.getElementById('news-list');
-  const archiveContainer = document.getElementById('archive-news');
-  const loader = document.getElementById('loader');
-  const errorMessage = document.getElementById('error-message');
-  const refreshButton = document.getElementById('refresh-button');
-  const tabs = document.querySelectorAll('.tab');
-  
-  // Stockage local pour les archives
-  const ARCHIVE_KEY = 'rss-archive';
-  let archives = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || '[]');
-
-  // Fonction pour formater la date
-  function formatDate(dateStr) {
-    return new Date(dateStr).toLocaleDateString('fr-FR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }
-
-  // Fonction pour créer un élément d'actualité
-  function createNewsItem(item) {
-    return `
-      <div class="news-item">
-        <div class="news-date">${formatDate(item.pubDate)}</div>
-        <h3 class="news-title">${item.title}</h3>
-        <p class="news-content">${item.description}</p>
-        <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
+    <div id="general-news" class="news-container active">
+      <div id="general-loader" class="loader"></div>
+      <div id="general-error-message" class="error-message">
+        Une erreur est survenue lors du chargement des actualités.
       </div>
-    `;
-  }
+      <div id="general-news-list"></div>
+    </div>
 
-  // Fonction pour sauvegarder dans les archives
-  function saveToArchive(items) {
-    const now = new Date().toISOString();
-    archives.unshift({
-      date: now,
-      items: items
-    });
-    localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archives));
-    updateArchiveView();
-  }
-
-  // Fonction pour mettre à jour la vue des archives
-  function updateArchiveView() {
-    archiveContainer.innerHTML = archives.map(archive => `
-      <div class="archive-group">
-        <h2 class="archive-date">${formatDate(archive.date)}</h2>
-        ${archive.items.map(item => createNewsItem(item)).join('')}
+    <div id="ai-news" class="news-container">
+      <div id="ai-loader" class="loader"></div>
+      <div id="ai-error-message" class="error-message">
+        Une erreur est survenue lors du chargement des actualités IA.
       </div>
-    `).join('');
-  }
+      <div id="ai-news-list"></div>
+    </div>
+  </main>
 
-  // Fonction pour charger les actualités
-  async function loadNews() {
-    loader.style.display = 'block';
-    errorMessage.style.display = 'none';
-    newsListContainer.innerHTML = '';
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const generalNewsListContainer = document.getElementById('general-news-list');
+      const aiNewsListContainer = document.getElementById('ai-news-list');
+      const generalLoader = document.getElementById('general-loader');
+      const aiLoader = document.getElementById('ai-loader');
+      const generalErrorMessage = document.getElementById('general-error-message');
+      const aiErrorMessage = document.getElementById('ai-error-message');
+      const tabs = document.querySelectorAll('.tab');
 
-    try {
-      const rssUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-      
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error('Erreur réseau');
-      
-      const data = await response.json();
-      if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
+      function formatDate(dateStr) {
+        return new Date(dateStr).toLocaleDateString('fr-FR', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      }
 
-      // Sauvegarder dans les archives
-      saveToArchive(data.items);
+      function createNewsItem(item) {
+        return `
+          <div class="news-item">
+            <div class="news-date">${formatDate(item.pubDate)}</div>
+            <h3 class="news-title">${item.title}</h3>
+            <p class="news-content">${item.description}</p>
+            <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
+          </div>
+        `;
+      }
 
-      // Afficher les actualités
-      newsListContainer.innerHTML = data.items.map(item => createNewsItem(item)).join('');
+      async function loadGeneralNews() {
+        generalLoader.style.display = 'block';
+        generalErrorMessage.style.display = 'none';
+        generalNewsListContainer.innerHTML = '';
 
-      // Animer l'apparition
-      const newsItems = newsListContainer.querySelectorAll('.news-item');
-      newsItems.forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add('visible');
-        }, index * 100);
+        try {
+          const rssUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
+          const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error('Erreur réseau');
+          const data = await response.json();
+          if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
+
+          generalNewsListContainer.innerHTML = data.items.map(item => createNewsItem(item)).join('');
+          animateNewsItems(generalNewsListContainer);
+        } catch (error) {
+          console.error('Erreur:', error);
+          generalErrorMessage.style.display = 'block';
+        } finally {
+          generalLoader.style.display = 'none';
+        }
+      }
+
+      async function loadAINews() {
+        aiLoader.style.display = 'block';
+        aiErrorMessage.style.display = 'none';
+        aiNewsListContainer.innerHTML = '';
+
+        try {
+          const rssUrl = 'https://rss.app/feeds/6CxFTMCJIgFmdqQs.xml';
+          const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error('Erreur réseau');
+          const data = await response.json();
+          if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
+
+          aiNewsListContainer.innerHTML = data.items.map(item => createNewsItem(item)).join('');
+          animateNewsItems(aiNewsListContainer);
+        } catch (error) {
+          console.error('Erreur:', error);
+          aiErrorMessage.style.display = 'block';
+        } finally {
+          aiLoader.style.display = 'none';
+        }
+      }
+
+      function animateNewsItems(container) {
+        const newsItems = container.querySelectorAll('.news-item');
+        newsItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 100);
+        });
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const tabId = tab.dataset.tab;
+          document.querySelectorAll('.news-container').forEach(container => {
+            container.classList.remove('active');
+          });
+          document.getElementById(`${tabId}-news`).classList.add('active');
+
+          if (tabId === 'general') {
+            loadGeneralNews();
+          } else {
+            loadAINews();
+          }
+        });
       });
 
-    } catch (error) {
-      console.error('Erreur:', error);
-      errorMessage.style.display = 'block';
-    } finally {
-      loader.style.display = 'none';
-    }
-  }
-
-  // Gestionnaire d'événements pour les onglets
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      
-      const tabId = tab.dataset.tab;
-      document.querySelectorAll('.news-container').forEach(container => {
-        container.classList.remove('active');
-      });
-      document.getElementById(`${tabId}-news`).classList.add('active');
+      loadGeneralNews();
     });
-  });
-
-  // Gestionnaire pour le bouton de rafraîchissement
-  refreshButton.addEventListener('click', loadNews);
-
-  // Charger les actualités au démarrage
-  loadNews();
-  updateArchiveView();
-});
-</script>
-
+  </script>
 </body>
 </html>
