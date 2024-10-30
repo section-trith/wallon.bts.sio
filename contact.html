@@ -446,7 +446,12 @@ body {
   </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
+(function() {
+  emailjs.init("BV6uENxCDTEvYAyPw"); // Initialize with your public key
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
   const cards = document.querySelectorAll('.contact-card');
   const chatMessages = document.getElementById('chatMessages');
@@ -651,49 +656,20 @@ function sendMessage() {
           addBotMessage("Merci pour ces informations ! Je transmets votre demande à Paul qui vous recontactera très prochainement.");
           showSuccessOverlay();
           
-          const form = document.createElement('form');
-          form.method = 'POST';
-          form.action = 'https://formsubmit.co/paul.peudecoeur@email.com';
-          
-          const nameInput = document.createElement('input');
-          nameInput.type = 'hidden';
-          nameInput.name = 'name';
-          nameInput.value = window.userInfo.name;
-          
-          const emailInput = document.createElement('input');
-          emailInput.type = 'hidden';
-          emailInput.name = 'email';
-          emailInput.value = window.userInfo.contact;
-          
-          const messageInput = document.createElement('input');
-          messageInput.type = 'hidden';
-          messageInput.name = 'message';
-          messageInput.value = `Nouveau message du chat:\n\nNom: ${window.userInfo.name}\nEmail: ${window.userInfo.contact}\nDescription: ${window.userInfo.description}`;
-          
-          const captchaInput = document.createElement('input');
-          captchaInput.type = 'hidden';
-          captchaInput.name = '_captcha';
-          captchaInput.value = 'false';
-          
-          const redirectInput = document.createElement('input');
-          redirectInput.type = 'hidden';
-          redirectInput.name = '_next';
-          redirectInput.value = window.location.href;
-          
-          const templateInput = document.createElement('input');
-          templateInput.type = 'hidden';
-          templateInput.name = '_template';
-          templateInput.value = 'table';
-          
-          form.appendChild(nameInput);
-          form.appendChild(emailInput);
-          form.appendChild(messageInput);
-          form.appendChild(captchaInput);
-          form.appendChild(redirectInput);
-          form.appendChild(templateInput);
-          
-          document.body.appendChild(form);
-          form.submit();
+          // Send email using EmailJS
+          emailjs.send("service_q6uctzi", "template_vt88hoe", {
+            from_name: window.userInfo.name,
+            from_email: window.userInfo.contact,
+            message: window.userInfo.description
+          }).then(
+            function(response) {
+              console.log("Email sent successfully", response);
+            },
+            function(error) {
+              console.error("Failed to send email:", error);
+              addBotMessage("Désolé, une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.");
+            }
+          );
         }, 1000);
         conversationState = 3;
         break;
