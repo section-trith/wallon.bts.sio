@@ -1,38 +1,267 @@
-<html>
-<head>
-<base href="">
-<title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
+<html><head><base href=""><title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
 <meta charset="UTF-8">
 <style>
-/* ... Garder tout le CSS précédent ... */
-/* Ajouter ces styles pour le loader */
-.loader {
-  display: none;
-  text-align: center;
-  padding: 20px;
+:root {
+  --primary: #2c3e50;
+  --accent: transparent;
+  --light: #ecf0f1;
 }
 
-.loader::after {
-  content: '';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--primary);
+  background-color: var(--light);
+}
+
+.nav {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.nav-link.active {
+  color: #23d5ab;
+  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--primary);
+  min-width: 200px;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+}
+
+.dropdown-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+  background: linear-gradient(45deg, #ee7752, #23a6d5);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+}
+
+.veille-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+}
+
+.veille-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: fadeInDown 1s ease-out;
+}
+
+.veille-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.veille-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.veille-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: all 0.4s ease;
+}
+
+.veille-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(31, 38, 135, 0.2);
+}
+
+.veille-topic {
+  margin-bottom: 2rem;
+}
+
+.veille-topic h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.news-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+  transform: translateX(10px);
+}
+
+.news-date {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.news-title {
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.news-content {
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.source-link {
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #23a6d5;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  color: #23a6d5;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  background: rgba(35, 166, 213, 0.1);
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.source-link:hover {
+  background: rgba(35, 166, 213, 0.2);
+  transform: translateX(5px);
 }
 
-.error-message {
-  color: #e74c3c;
-  text-align: center;
-  padding: 20px;
-  display: none;
+.veille-methods {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+}
+
+.methods-title {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.methods-list {
+  list-style: none;
+}
+
+.methods-list li {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.methods-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #23a6d5;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -40,9 +269,37 @@
 </head>
 <body>
 
-<!-- Garder la navigation existante -->
 <nav class="nav">
-  <!-- ... Le contenu de la navigation reste identique ... -->
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="index.html" class="nav-link">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a href="profil.html" class="nav-link">Profil</a>
+    </li>
+    <li class="nav-item">
+      <a href="formation.html" class="nav-link">Formation</a>
+      <div class="dropdown">
+        <a href="bts-sio-sisr.html" class="dropdown-link">BTS SIO SISR</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="organisation.html" class="nav-link">Organisation</a>
+    </li>
+    <li class="nav-item">
+      <a href="epreuves.html" class="nav-link">Epreuves</a>
+      <div class="dropdown">
+        <a href="epreuve-e4.html" class="dropdown-link">Epreuve E4</a>
+        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a href="veilles.html" class="nav-link active">Veilles</a>
+    </li>
+    <li class="nav-item">
+      <a href="contact.html" class="nav-link">Contact</a>
+    </li>
+  </ul>
 </nav>
 
 <main class="veille-section">
@@ -55,22 +312,30 @@
     <div class="veille-card">
       <div class="veille-topic">
         <h2>Dernières actualités et enjeux</h2>
-        <div id="loader" class="loader"></div>
-        <div id="error-message" class="error-message">
-          Une erreur est survenue lors du chargement des actualités. Veuillez réessayer plus tard.
+        
+        <div class="news-item">
+          <div class="news-date">29 Octobre 2024</div>
+          <h3 class="news-title">À Roscoff, l'après-Ciaran perturbe encore la vie de la Station Biologique</h3>
+          <p class="news-content">Heureusement, la salle des serveurs et du réseau informatique, au 3ème étage, se trouvait dans la partie préservée.</p>
+          <a href="https://news.dayfr.com/trends/3850945.html" class="source-link">Lire plus →</a>
         </div>
-        <div id="news-container">
-          <!-- Les actualités seront injectées ici dynamiquement -->
+
+        <div class="news-item">
+          <div class="news-date">29 Octobre 2024</div>
+          <h3 class="news-title">En Italie, un réseau de piratage d'informations sensibles de l'État mis au jour</h3>
+          <p class="news-content">Ce réseau informatique contient des données sur des enquêtes, comme des informations sur des réseaux criminels, des plaintes, des données...</p>
+          <a href="https://fr.euronews.com/2024/10/29/en-italie-un-reseau-de-piratage-dinformations-sensibles-de-letat-mis-au-jour" class="source-link">Lire plus →</a>
         </div>
       </div>
 
       <div class="veille-methods">
         <h3 class="methods-title">Méthodes de veille utilisées</h3>
         <ul class="methods-list">
-          <li>Flux RSS Google Alerts en temps réel sur la thématique "réseau informatique"</li>
-          <li>Mise à jour automatique toutes les 30 minutes</li>
-          <li>Filtrage intelligent des actualités pertinentes</li>
-          <li>Suivi des tendances émergentes</li>
+          <li>Alertes Google personnalisées sur les thématiques "réseau informatique"</li>
+          <li>Suivi des flux RSS d'actualités spécialisées</li>
+          <li>Veille active sur les forums professionnels</li>
+          <li>Participation aux webinaires techniques</li>
+          <li>Analyse des tendances et innovations du secteur</li>
         </ul>
       </div>
     </div>
@@ -79,89 +344,33 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const newsContainer = document.getElementById('news-container');
-  const loader = document.getElementById('loader');
-  const errorMessage = document.getElementById('error-message');
+  const newsItems = document.querySelectorAll('.news-item');
   
-  // Fonction pour formater la date
-  function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('fr-FR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateX(0)';
+      }
     });
-  }
+  }, observerOptions);
 
-  // Fonction pour créer un élément d'actualité
-  function createNewsItem(item) {
-    return `
-      <div class="news-item">
-        <div class="news-date">${formatDate(item.pubDate)}</div>
-        <h3 class="news-title">${item.title}</h3>
-        <p class="news-content">${item.description}</p>
-        <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
-      </div>
-    `;
-  }
+  newsItems.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-50px)';
+    observer.observe(item);
+  });
 
-  // Fonction pour charger les actualités
-  async function loadNews() {
-    loader.style.display = 'block';
-    errorMessage.style.display = 'none';
-    newsContainer.innerHTML = '';
-
-    try {
-      // Utilisation de rss2json comme proxy pour éviter les problèmes CORS
-      const rssUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-      
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error('Erreur réseau');
-      
-      const data = await response.json();
-      if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
-
-      // Afficher les actualités
-      data.items.forEach(item => {
-        newsContainer.innerHTML += createNewsItem(item);
-      });
-
-      // Ajouter les animations
-      const newsItems = document.querySelectorAll('.news-item');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateX(0)';
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      });
-
-      newsItems.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-50px)';
-        observer.observe(item);
-      });
-
-    } catch (error) {
-      console.error('Erreur:', error);
-      errorMessage.style.display = 'block';
-    } finally {
-      loader.style.display = 'none';
-    }
-  }
-
-  // Charger les actualités au démarrage
-  loadNews();
-
-  // Rafraîchir les actualités toutes les 30 minutes
-  setInterval(loadNews, 30 * 60 * 1000);
+  // Auto-refresh feed every 30 minutes
+  setInterval(() => {
+    location.reload();
+  }, 30 * 60 * 1000);
 });
 </script>
 
-</body>
-</html>
+</body></html>
