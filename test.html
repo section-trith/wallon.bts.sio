@@ -1,10 +1,13 @@
-<html><head><base href=""><title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
+<html>
+<head>
+<title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
 <meta charset="UTF-8">
 <style>
 :root {
   --primary: #2c3e50;
   --accent: transparent;
   --light: #ecf0f1;
+  --blue-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 }
 
 * {
@@ -47,44 +50,9 @@ body {
   transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link.active {
   color: #23d5ab;
   text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
-}
-
-.nav-link.active {
-  color: #23d5ab;
-  text-shadow: 0 0 10px rgba(35, 213, 171, 0.5);
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--primary);
-  min-width: 200px;
-  border-radius: 4px;
-  padding: 0.5rem 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.nav-item:hover .dropdown {
-  display: block;
-}
-
-.dropdown-link {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-link:hover {
-  background: linear-gradient(45deg, #ee7752, #23a6d5);
-  background-size: 200% 200%;
-  animation: gradient 5s ease infinite;
 }
 
 .veille-section {
@@ -96,13 +64,12 @@ body {
 .veille-header {
   text-align: center;
   margin-bottom: 4rem;
-  animation: fadeInDown 1s ease-out;
 }
 
 .veille-header h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: var(--blue-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -110,58 +77,91 @@ body {
   animation: gradient 15s ease infinite;
 }
 
-.veille-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.veille-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  transition: all 0.4s ease;
-}
-
-.veille-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 45px rgba(31, 38, 135, 0.2);
-}
-
-.veille-topic {
+.tabs-container {
   margin-bottom: 2rem;
 }
 
-.veille-topic h2 {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.tab {
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.tab:hover {
+  transform: translateY(-2px);
+}
+
+.news-container {
+  display: none;
+}
+
+.news-container.active {
+  display: block;
+}
+
+.loader {
+  text-align: center;
+  padding: 2rem;
+  display: none;
+}
+
+.loader::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #23a6d5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(231, 76, 60, 0.1);
+  border-radius: 10px;
+  margin: 1rem 0;
+  display: none;
 }
 
 .news-item {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
-  transition: transform 0.3s ease;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateX(-20px);
+  opacity: 0;
+  transition: all 0.5s ease;
 }
 
-.news-item:hover {
-  transform: translateX(10px);
+.news-item.visible {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .news-date {
-  font-size: 0.9rem;
   color: #666;
+  font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
 
@@ -191,77 +191,54 @@ body {
   transform: translateX(5px);
 }
 
-.veille-methods {
-  margin-top: 3rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 15px;
+.refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
 }
 
-.methods-title {
+.refresh-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-button i {
+  transition: transform 0.3s ease;
+}
+
+.refresh-button:hover i {
+  transform: rotate(180deg);
+}
+
+.archive-date {
+  text-align: center;
   font-size: 1.5rem;
+  margin-bottom: 2rem;
   color: var(--primary);
-  margin-bottom: 1rem;
+  background: var(--blue-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.methods-list {
-  list-style: none;
-}
-
-.methods-list li {
-  margin-bottom: 1rem;
-  padding-left: 2rem;
-  position: relative;
-}
-
-.methods-list li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: #23a6d5;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -278,22 +255,6 @@ body {
       <a href="profil.html" class="nav-link">Profil</a>
     </li>
     <li class="nav-item">
-      <a href="formation.html" class="nav-link">Formation</a>
-      <div class="dropdown">
-        <a href="bts-sio-sisr.html" class="dropdown-link">BTS SIO SISR</a>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a href="organisation.html" class="nav-link">Organisation</a>
-    </li>
-    <li class="nav-item">
-      <a href="epreuves.html" class="nav-link">Epreuves</a>
-      <div class="dropdown">
-        <a href="epreuve-e4.html" class="dropdown-link">Epreuve E4</a>
-        <a href="epreuve-e6.html" class="dropdown-link">Epreuve E6</a>
-      </div>
-    </li>
-    <li class="nav-item">
       <a href="veilles.html" class="nav-link active">Veilles</a>
     </li>
     <li class="nav-item">
@@ -308,69 +269,148 @@ body {
     <p>Sujet : Réseau Informatique et Cybersécurité</p>
   </div>
 
-  <div class="veille-grid">
-    <div class="veille-card">
-      <div class="veille-topic">
-        <h2>Dernières actualités et enjeux</h2>
-        
-        <div class="news-item">
-          <div class="news-date">29 Octobre 2024</div>
-          <h3 class="news-title">À Roscoff, l'après-Ciaran perturbe encore la vie de la Station Biologique</h3>
-          <p class="news-content">Heureusement, la salle des serveurs et du réseau informatique, au 3ème étage, se trouvait dans la partie préservée.</p>
-          <a href="https://news.dayfr.com/trends/3850945.html" class="source-link">Lire plus →</a>
-        </div>
-
-        <div class="news-item">
-          <div class="news-date">29 Octobre 2024</div>
-          <h3 class="news-title">En Italie, un réseau de piratage d'informations sensibles de l'État mis au jour</h3>
-          <p class="news-content">Ce réseau informatique contient des données sur des enquêtes, comme des informations sur des réseaux criminels, des plaintes, des données...</p>
-          <a href="https://fr.euronews.com/2024/10/29/en-italie-un-reseau-de-piratage-dinformations-sensibles-de-letat-mis-au-jour" class="source-link">Lire plus →</a>
-        </div>
-      </div>
-
-      <div class="veille-methods">
-        <h3 class="methods-title">Méthodes de veille utilisées</h3>
-        <ul class="methods-list">
-          <li>Alertes Google personnalisées sur les thématiques "réseau informatique"</li>
-          <li>Suivi des flux RSS d'actualités spécialisées</li>
-          <li>Veille active sur les forums professionnels</li>
-          <li>Participation aux webinaires techniques</li>
-          <li>Analyse des tendances et innovations du secteur</li>
-        </ul>
-      </div>
+  <div class="tabs-container">
+    <div class="tabs">
+      <button class="tab active" data-tab="latest">Dernières actualités</button>
+      <button class="tab" data-tab="archive">Archives</button>
     </div>
+    
+    <button id="refresh-button" class="refresh-button">
+      <i class="fas fa-sync-alt"></i>
+      Actualiser
+    </button>
+  </div>
+
+  <div id="latest-news" class="news-container active">
+    <div id="loader" class="loader"></div>
+    <div id="error-message" class="error-message">
+      Une erreur est survenue lors du chargement des actualités.
+    </div>
+    <div id="news-list"></div>
+  </div>
+
+  <div id="archive-news" class="news-container">
+    <!-- Les archives seront injectées ici -->
   </div>
 </main>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const newsItems = document.querySelectorAll('.news-item');
+  const newsListContainer = document.getElementById('news-list');
+  const archiveContainer = document.getElementById('archive-news');
+  const loader = document.getElementById('loader');
+  const errorMessage = document.getElementById('error-message');
+  const refreshButton = document.getElementById('refresh-button');
+  const tabs = document.querySelectorAll('.tab');
   
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
+  // Stockage local pour les archives
+  const ARCHIVE_KEY = 'rss-archive';
+  let archives = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || '[]');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateX(0)';
-      }
+  // Fonction pour formater la date
+  function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
     });
-  }, observerOptions);
+  }
 
-  newsItems.forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateX(-50px)';
-    observer.observe(item);
+  // Fonction pour créer un élément d'actualité
+  function createNewsItem(item) {
+    return `
+      <div class="news-item">
+        <div class="news-date">${formatDate(item.pubDate)}</div>
+        <h3 class="news-title">${item.title}</h3>
+        <p class="news-content">${item.description}</p>
+        <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
+      </div>
+    `;
+  }
+
+  // Fonction pour sauvegarder dans les archives
+  function saveToArchive(items) {
+    const now = new Date().toISOString();
+    archives.unshift({
+      date: now,
+      items: items
+    });
+    localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archives));
+    updateArchiveView();
+  }
+
+  // Fonction pour mettre à jour la vue des archives
+  function updateArchiveView() {
+    archiveContainer.innerHTML = archives.map(archive => `
+      <div class="archive-group">
+        <h2 class="archive-date">${formatDate(archive.date)}</h2>
+        ${archive.items.map(item => createNewsItem(item)).join('')}
+      </div>
+    `).join('');
+  }
+
+  // Fonction pour charger les actualités
+  async function loadNews() {
+    loader.style.display = 'block';
+    errorMessage.style.display = 'none';
+    newsListContainer.innerHTML = '';
+
+    try {
+      const rssUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Erreur réseau');
+      
+      const data = await response.json();
+      if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
+
+      // Sauvegarder dans les archives
+      saveToArchive(data.items);
+
+      // Afficher les actualités
+      newsListContainer.innerHTML = data.items.map(item => createNewsItem(item)).join('');
+
+      // Animer l'apparition
+      const newsItems = newsListContainer.querySelectorAll('.news-item');
+      newsItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, index * 100);
+      });
+
+    } catch (error) {
+      console.error('Erreur:', error);
+      errorMessage.style.display = 'block';
+    } finally {
+      loader.style.display = 'none';
+    }
+  }
+
+  // Gestionnaire d'événements pour les onglets
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      const tabId = tab.dataset.tab;
+      document.querySelectorAll('.news-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      document.getElementById(`${tabId}-news`).classList.add('active');
+    });
   });
 
-  // Auto-refresh feed every 30 minutes
-  setInterval(() => {
-    location.reload();
-  }, 30 * 60 * 1000);
+  // Gestionnaire pour le bouton de rafraîchissement
+  refreshButton.addEventListener('click', loadNews);
+
+  // Charger les actualités au démarrage
+  loadNews();
+  updateArchiveView();
 });
 </script>
 
-</body></html>
+</body>
+</html>
