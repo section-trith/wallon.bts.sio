@@ -446,7 +446,11 @@ body {
   </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
+(function() {
+  emailjs.init("BV6uENxCDTEvYAyPw"); // Initialize with your public key
+})();
 
 document.addEventListener('DOMContentLoaded', function() {
   const cards = document.querySelectorAll('.contact-card');
@@ -652,32 +656,20 @@ function sendMessage() {
           addBotMessage("Merci pour ces informations ! Je transmets votre demande à Paul qui vous recontactera très prochainement.");
           showSuccessOverlay();
           
-          // Create and submit form to FormSubmit
-          const form = document.createElement('form');
-          form.method = 'POST';
-          form.action = 'https://formsubmit.co/bfb1fec7badfbe7c1f01f13dd3af39aa';
-          
-          const nameField = document.createElement('input');
-          nameField.type = 'hidden';
-          nameField.name = 'name';
-          nameField.value = window.userInfo.name;
-          
-          const emailField = document.createElement('input');
-          emailField.type = 'hidden';
-          emailField.name = 'email';
-          emailField.value = window.userInfo.contact;
-          
-          const messageField = document.createElement('input');
-          messageField.type = 'hidden';
-          messageField.name = 'message';
-          messageField.value = window.userInfo.description;
-          
-          form.appendChild(nameField);
-          form.appendChild(emailField);
-          form.appendChild(messageField);
-          
-          document.body.appendChild(form);
-          form.submit();
+          // Send email using EmailJS
+          emailjs.send("service_q6uctzi", "template_vt88hoe", {
+            from_name: window.userInfo.name,
+            from_email: window.userInfo.contact,
+            message: window.userInfo.description
+          }).then(
+            function(response) {
+              console.log("Email sent successfully", response);
+            },
+            function(error) {
+              console.error("Failed to send email:", error);
+              addBotMessage("Désolé, une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.");
+            }
+          );
         }, 1000);
         conversationState = 3;
         break;
