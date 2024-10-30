@@ -1,34 +1,167 @@
 <html>
 <head>
-    <title>Mon Site GitHub Pages avec RSS</title>
+<base href="">
+<title>Veille Technologique - Portfolio de Paul Peudecoeur</title>
+<meta charset="UTF-8">
+<style>
+/* ... Garder tout le CSS précédent ... */
+/* Ajouter ces styles pour le loader */
+.loader {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.loader::after {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #23a6d5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  padding: 20px;
+  display: none;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <h1>Dernières actualités</h1>
-    <div id="rss-feed"></div>
 
-    <script>
-        // Fonction pour récupérer et afficher les flux RSS
-        async function loadRSS() {
-            const rssFeedUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
-            
-            try {
-                const response = await fetch(rssFeedUrl);
-                const data = await response.json();
-                
-                let html = '<ul>';
-                data.items.forEach(item => {
-                    html += `<li><a href="${item.link}">${item.title}</a><br>${item.pubDate}</li>`;
-                });
-                html += '</ul>';
+<!-- Garder la navigation existante -->
+<nav class="nav">
+  <!-- ... Le contenu de la navigation reste identique ... -->
+</nav>
 
-                document.getElementById('rss-feed').innerHTML = html;
-            } catch (error) {
-                console.error('Erreur de chargement du flux RSS :', error);
-            }
-        }
+<main class="veille-section">
+  <div class="veille-header">
+    <h1>Veille Technologique</h1>
+    <p>Sujet : Réseau Informatique et Cybersécurité</p>
+  </div>
 
-        // Charger le flux RSS au chargement de la page
-        document.addEventListener('DOMContentLoaded', loadRSS);
-    </script>
+  <div class="veille-grid">
+    <div class="veille-card">
+      <div class="veille-topic">
+        <h2>Dernières actualités et enjeux</h2>
+        <div id="loader" class="loader"></div>
+        <div id="error-message" class="error-message">
+          Une erreur est survenue lors du chargement des actualités. Veuillez réessayer plus tard.
+        </div>
+        <div id="news-container">
+          <!-- Les actualités seront injectées ici dynamiquement -->
+        </div>
+      </div>
+
+      <div class="veille-methods">
+        <h3 class="methods-title">Méthodes de veille utilisées</h3>
+        <ul class="methods-list">
+          <li>Flux RSS Google Alerts en temps réel sur la thématique "réseau informatique"</li>
+          <li>Mise à jour automatique toutes les 30 minutes</li>
+          <li>Filtrage intelligent des actualités pertinentes</li>
+          <li>Suivi des tendances émergentes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const newsContainer = document.getElementById('news-container');
+  const loader = document.getElementById('loader');
+  const errorMessage = document.getElementById('error-message');
+  
+  // Fonction pour formater la date
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  // Fonction pour créer un élément d'actualité
+  function createNewsItem(item) {
+    return `
+      <div class="news-item">
+        <div class="news-date">${formatDate(item.pubDate)}</div>
+        <h3 class="news-title">${item.title}</h3>
+        <p class="news-content">${item.description}</p>
+        <a href="${item.link}" class="source-link" target="_blank">Lire plus →</a>
+      </div>
+    `;
+  }
+
+  // Fonction pour charger les actualités
+  async function loadNews() {
+    loader.style.display = 'block';
+    errorMessage.style.display = 'none';
+    newsContainer.innerHTML = '';
+
+    try {
+      // Utilisation de rss2json comme proxy pour éviter les problèmes CORS
+      const rssUrl = 'https://www.google.fr/alerts/feeds/01801716343560939801/11802240584841967738';
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+      
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Erreur réseau');
+      
+      const data = await response.json();
+      if (data.status !== 'ok') throw new Error('Erreur de parsing RSS');
+
+      // Afficher les actualités
+      data.items.forEach(item => {
+        newsContainer.innerHTML += createNewsItem(item);
+      });
+
+      // Ajouter les animations
+      const newsItems = document.querySelectorAll('.news-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      newsItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-50px)';
+        observer.observe(item);
+      });
+
+    } catch (error) {
+      console.error('Erreur:', error);
+      errorMessage.style.display = 'block';
+    } finally {
+      loader.style.display = 'none';
+    }
+  }
+
+  // Charger les actualités au démarrage
+  loadNews();
+
+  // Rafraîchir les actualités toutes les 30 minutes
+  setInterval(loadNews, 30 * 60 * 1000);
+});
+</script>
+
 </body>
 </html>
