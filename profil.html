@@ -58,12 +58,18 @@ body {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--primary);
   min-width: 200px;
   border-radius: 4px;
   padding: 0.5rem 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.nav-item {
+  position: relative;
 }
 
 .nav-item:hover .dropdown {
@@ -247,15 +253,9 @@ body {
 }
 
 @keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @media (max-width: 968px) {
@@ -324,7 +324,7 @@ body {
         </div>
         <div class="contact-item">
           <h3>Adresse électronique</h3>
-          <p>nathan.serror@gmail.com</p>
+          <p>paul.peudecoeur@gmail.com</p>
         </div>
       </div>
       <button class="cv-button" onclick="checkPassword()">Consulter mon CV</button>
@@ -372,4 +372,5 @@ function checkPassword() {
 }
 </script>
 
-</body></html>
+</body>
+</html>
