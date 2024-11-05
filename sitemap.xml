@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- Page d'accueil : mise à jour régulière hebdomadaire -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/index.html</loc>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+   </url>
+
+   <!-- Page Profil -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/profil.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <!-- Page Formation -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/formation.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <!-- Sous-page BTS SIO SISR -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/formation.html#bts-sio-sisr</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Page Organisation -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/organisation.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Page Epreuves -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/index.html#epreuves</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Sous-pages Epreuves E4 et E6 -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/epreuve-e4.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/epreuve-e6.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+
+   <!-- Page Veilles : mise à jour quotidienne -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/veilles.html</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <!-- Page Contact -->
+   <url>
+      <loc>https://paulportfoliobts.github.io/wallon.bts.sio/contact.html</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+</urlset>
