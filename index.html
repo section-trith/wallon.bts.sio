@@ -1,160 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <base href=".">
-    <title>Portfolio de Paul Peudecoeur - BTS SIO Sécurité - Développeur et Administrateur Réseaux</title>
     <meta charset="UTF-8">
-    <meta name="description" content="Portfolio de Paul Peudecoeur, étudiant en BTS SIO option sécurité. Découvrez mon parcours, mes compétences en administration réseau.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Paul Peudecoeur - BTS SIO</title>
+    <meta name="description" content="Portfolio de Paul Peudecoeur, étudiant en BTS SIO. Découvrez mon profil, mes compétences en développement et en administration réseau.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Styles et animations similaires à l'original */
+        /* Déclaration des couleurs principales */
         :root {
-            --primary: #2c3e50;
-            --accent: transparent;
-            --light: #ecf0f1;
+            --primary-color: #2c3e50;
+            --accent-color: #23d5ab;
+            --light-color: #ecf0f1;
         }
+        
+        /* Réinitialisation des marges et paddings */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
+        /* Style du corps de page */
         body {
             font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--primary-color);
             line-height: 1.6;
-            color: var(--primary);
-            background-color: var(--light);
         }
-        /* Reste du style inchangé */
-        /* ... */
+        
+        /* Barre de navigation */
+        .navbar {
+            background: var(--primary-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+        
+        .navbar a:hover {
+            color: var(--accent-color);
+        }
+
+        /* En-tête de la page */
+        .header {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            color: white;
+            animation: backgroundAnimation 10s infinite ease;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.5rem;
+        }
+
+        /* Section de bienvenue */
+        .about {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        /* Section portfolio */
+        .portfolio {
+            padding: 4rem 2rem;
+            background-color: var(--light-color);
+        }
+        
+        .portfolio h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #555;
+        }
+
+        /* Section de contact */
+        .contact {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
     </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="nav">
-    <ul class="nav-list">
-        <li class="nav-item">
-            <a href="index.html" class="nav-link active" title="Accueil - Portfolio de Paul Peudecoeur">Accueil</a>
-        </li>
-        <li class="nav-item">
-            <a href="profil.html" class="nav-link" title="Profil de Paul Peudecoeur">Profil</a>
-        </li>
-        <li class="nav-item">
-            <a href="formation.html" class="nav-link" title="Formation BTS SIO">Formation</a>
-            <div class="dropdown">
-                <a href="formation.html" class="dropdown-link" title="Détails sur le BTS SIO">BTS SIO SISR</a>
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <a href="index.html" title="Accueil">Accueil</a>
+        <a href="profil.html" title="Profil">Profil</a>
+        <a href="formation.html" title="Formation">Formation</a>
+    </nav>
+
+    <!-- En-tête -->
+    <header class="header">
+        <h1>Bienvenue sur le Portfolio de Paul Peudecoeur</h1>
+        <p>Étudiant en BTS SIO, passionné par le développement et la sécurité des systèmes d'information</p>
+    </header>
+
+    <!-- Section de bienvenue -->
+    <section class="about">
+        <h2>À propos de moi</h2>
+        <p>Je suis actuellement étudiant en BTS SIO avec une spécialisation en développement web et en sécurité réseau. Mon objectif est d'acquérir des compétences techniques solides pour devenir un expert en sécurité informatique.</p>
+    </section>
+
+    <!-- Section Portfolio -->
+    <section class="portfolio">
+        <h2>Mes Projets</h2>
+        <div class="projects">
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Projet 1 - Exemple">
+                <div class="project-content">
+                    <h3>Projet 1</h3>
+                    <p>Description de votre premier projet, mettant en avant les technologies et compétences utilisées.</p>
+                </div>
             </div>
-        </li>
-        <li class="nav-item">
-            <a href="organisation.html" class="nav-link" title="Organisation de mes projets">Organisation</a>
-        </li>
-        <li class="nav-item">
-            <a href="epreuves.html" class="nav-link" title="Épreuves BTS">Épreuves</a>
-            <div class="dropdown">
-                <a href="epreuve-e4.html" class="dropdown-link" title="Épreuve E4">Epreuve E4</a>
-                <a href="epreuve-e6.html" class="dropdown-link" title="Épreuve E6">Epreuve E6</a>
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Projet 2 - Exemple">
+                <div class="project-content">
+                    <h3>Projet 2</h3>
+                    <p>Description du second projet, montrant vos aptitudes et solutions créatives.</p>
+                </div>
             </div>
-        </li>
-        <li class="nav-item">
-            <a href="veilles.html" class="nav-link" title="Veilles technologiques">Veilles</a>
-        </li>
-        <li class="nav-item">
-            <a href="contact.html" class="nav-link" title="Contactez-moi">Contact</a>
-        </li>
-    </ul>
-</nav>
+            <!-- Ajouter plus de projets ici -->
+        </div>
+    </section>
 
-<!-- Header -->
-<header class="header">
-    <h1>Présentation de Paul Peudecoeur</h1>
-    <p>BTS SIO SISR - Option Sécurité</p>
-    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#ecf0f1" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-</header>
-
-<!-- Welcome Section -->
-<section class="welcome-section">
-    <h2>Bienvenue sur mon ePortfolio !</h2>
-    <p>Je suis Paul Peudecoeur, étudiant en BTS SIO option sécurité à Valenciennes. Passionné par le développement et l'administration réseau, je présente ici mes compétences et projets pour les professionnels et entreprises intéressés par mes services.</p>
-    <a href="profil.html" class="cta-button">Découvrez mon profil complet</a>
-</section>
-
-<!-- Portfolio Section -->
-<section class="portfolio">
-    <h2>Mon Parcours BTS SIO SISR</h2>
-    <div class="grid">
-        <article class="project">
-            <div class="project-img" aria-label="Icône d'infrastructure réseau">
-                <img src="chemin-vers-image1.jpg" alt="Infrastructure Réseau - illustration d'un réseau" style="width:100%; height:200px;">
-            </div>
-            <div class="project-content">
-                <h3>Infrastructure Réseau</h3>
-                <p>Configuration et maintenance des réseaux d'entreprise.</p>
-            </div>
-        </article>
-
-        <article class="project">
-            <div class="project-img" aria-label="Icône de sécurité informatique">
-                <img src="chemin-vers-image2.jpg" alt="Sécurité Informatique - illustration d'un bouclier" style="width:100%; height:200px;">
-            </div>
-            <div class="project-content">
-                <h3>Sécurité Informatique</h3>
-                <p>Protection des systèmes et données sensibles.</p>
-            </div>
-        </article>
-
-        <article class="project">
-            <div class="project-img" aria-label="Icône d'administration système">
-                <img src="chemin-vers-image3.jpg" alt="Administration Système - illustration de serveurs" style="width:100%; height:200px;">
-            </div>
-            <div class="project-content">
-                <h3>Administration Système</h3>
-                <p>Gestion et maintenance des serveurs.</p>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="contact">
-    <h2>Me Contacter</h2>
-    <p>N'hésitez pas à me contacter pour vos projets professionnels et collaborations.</p>
-    <div class="social-links">
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn de Paul Peudecoeur"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com" target="_blank" aria-label="GitHub de Paul Peudecoeur"><i class="fab fa-github"></i></a>
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter de Paul Peudecoeur"><i class="fab fa-twitter"></i></a>
-        <a href="mailto:paul@peudecoeur.com" aria-label="Email de Paul Peudecoeur"><i class="fas fa-envelope"></i></a>
-    </div>
-</section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const projects = document.querySelectorAll('.project');
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        projects.forEach(project => {
-            project.style.opacity = '0';
-            project.style.transform = 'translateY(20px)';
-            project.style.transition = 'all 0.6s ease-out';
-            observer.observe(project);
-        });
-    });
-</script>
+    <!-- Section de Contact -->
+    <section class="contact">
+        <h2>Contactez-moi</h2>
+        <p>N'hésitez pas à me contacter pour toute question ou collaboration potentielle !</p>
+        <div class="social-links">
+            <a href="https://github.com" aria-label="Lien GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com" aria-label="Lien LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:paul@example.com" aria-label="Envoyer un email" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </section>
 
 </body>
 </html>
