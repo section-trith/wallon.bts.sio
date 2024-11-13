@@ -1,3 +1,4 @@
-theme: jekyll-theme-minimal # Vous pouvez changer le thème si vous en avez un autre en tête
+theme: jekyll-theme-minimal 
 title: "Profil - Portfolio de Paul Peudecoeur"
 description: "Actuellement en formation à l'ORT Daniel Mayer de Montreuil (93), je poursuis ma deuxième année de BTS SIO avec une spécialisation en Solutions d'Infrastructure."
+header-img: "robot.png" 
